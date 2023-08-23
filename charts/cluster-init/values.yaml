@@ -1,5 +1,10 @@
 envNamespace: default
 
+keyvault:
+  clientID: ""
+  keyvaultName: ""
+  tenantId: ""
+
 csi-secrets-store-provider-azure:
   enabled: true
   secrets-store-csi-driver:    
@@ -9,3 +14,19 @@ csi-secrets-store-provider-azure:
 
 ingress-nginx:
   enabled: true
+  controller:
+    replicaCount: 2
+    nodeSelector:
+      kubernetes.io/os: linux
+    admissionWebhooks:
+      patch:
+        nodeSelector:
+        kubernetes.io/os: linux
+    service:
+      externalTrafficPolicy: Local
+      loadBalancerIP: ""
+      annotations:
+        service.beta.kubernetes.io/azure-dns-label-name: StaticIP
+  defaultBackend:
+    nodeSelector:
+    kubernetes.io/os: linux
