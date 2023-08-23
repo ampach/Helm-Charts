@@ -25,8 +25,11 @@ appVersion: 10.2.0
 
 dependencies:
   - name: mssql
+    version: 1.0.0
     condition: mssql.enabled
   - name: solr
+    version: 1.0.0
     condition: solr.enabled
   - name: redis
+    version: 1.0.0
     condition: redis.enabled
