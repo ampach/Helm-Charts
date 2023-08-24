@@ -1,5 +1,6 @@
 envNamespace: default
 
+serviceAccpuntName: sitecore-default-sa
 keyvault:
   clientID: ""
   keyvaultName: ""
