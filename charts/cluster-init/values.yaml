@@ -27,7 +27,7 @@ ingress-nginx:
       externalTrafficPolicy: Local
       loadBalancerIP: ""
       annotations:
-        service.beta.kubernetes.io/azure-dns-label-name: StaticIP
+        service.beta.kubernetes.io/azure-dns-label-name: staticip
   defaultBackend:
     nodeSelector:
     kubernetes.io/os: linux
