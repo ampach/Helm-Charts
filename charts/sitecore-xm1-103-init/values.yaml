@@ -17,6 +17,26 @@ init-solr:
     - name: regcred-dev
   solrCorePrefixName: sitecore
 
+persistentVolume:
+  deviceDetection:
+    name: device-detection
+    skuName: Standard_LRS
+    provisioner: file.csi.azure.com
+    accessModes:
+      - ReadWriteMany
+    resources:
+      requests:
+        storage: 10Gi
+  logs:
+    name: logs
+    skuName: Standard_LRS
+    provisioner: file.csi.azure.com
+    accessModes:
+      - ReadWriteMany
+    resources:
+      requests:
+        storage: 10Gi
+
 global:
   commonLabels:
     business-owner: artsem.prashkovich

@@ -1,0 +1,21 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: {{ .Values.persistentVolume.logs.name }}
+provisioner: {{ .Values.persistentVolume.logs.provisioner }}
+parameters:
+  skuName: {{ .Values.persistentVolume.logs.skuName }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.persistentVolume.logs.name }}
+spec:
+  {{- with .Values.persistentVolume.logs.accessModes }}
+  accessModes:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}    
+  storageClassName: {{ .Values.persistentVolume.logs.name }}
+  resources:
+    {{- toYaml .Values.persistentVolume.logs.resources | nindent 4 }}

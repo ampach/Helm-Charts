@@ -1,0 +1,21 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: {{ .Values.persistentVolume.deviceDetection.name }}
+provisioner: {{ .Values.persistentVolume.deviceDetection.provisioner }}
+parameters:
+  skuName: {{ .Values.persistentVolume.deviceDetection.skuName }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.persistentVolume.deviceDetection.name }}
+spec:
+  {{- with .Values.persistentVolume.deviceDetection.accessModes }}
+  accessModes:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}    
+  storageClassName: {{ .Values.persistentVolume.deviceDetection.name }}
+  resources:
+    {{- toYaml .Values.persistentVolume.deviceDetection.resources | nindent 4 }}
