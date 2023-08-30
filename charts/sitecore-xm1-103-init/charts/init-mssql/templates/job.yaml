@@ -86,9 +86,9 @@ spec:
                   name: sitecore-database
                   key: Forms_Database_Password
             - name: Sql_Database_Prefix
-              value: {{ .Values.image.sqlDatabasePrefix }}
+              value: {{ .Values.sqlDatabasePrefix }}
             - name: Sql_Custom_Database_Prefix_Update_From
-              value: {{ .Values.image.sqlCustomDatabasePrefixUpdateFrom }}
+              value: {{ .Values.sqlCustomDatabasePrefixUpdateFrom }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       restartPolicy: Never

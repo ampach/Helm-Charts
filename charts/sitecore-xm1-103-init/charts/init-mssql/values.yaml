@@ -12,6 +12,9 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: "sitecore-init-mssql"
 
+sqlDatabasePrefix: sitecore
+sqlCustomDatabasePrefixUpdateFrom:
+
 
 nodeSelector:
   kubernetes.io/os: windows
