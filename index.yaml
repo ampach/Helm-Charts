@@ -3,6 +3,25 @@ entries:
   cluster-init:
   - apiVersion: v2
     appVersion: 10.3.1
+    created: "2023-09-04T17:05:18.880884035Z"
+    dependencies:
+    - condition: csi-secrets-store-provider-azure.enabled
+      name: csi-secrets-store-provider-azure
+      repository: https://azure.github.io/secrets-store-csi-driver-provider-azure/charts
+      version: 1.4.3
+    - condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.7.1
+    description: A Helm chart for Kubernetes
+    digest: c19971aff3a01770b367124a38f3ccf82b24065beaf28c061bf7ecb8bc8ae3a3
+    name: cluster-init
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/cluster-init-1.0.8/cluster-init-1.0.8.tgz
+    version: 1.0.8
+  - apiVersion: v2
+    appVersion: 10.3.1
     created: "2023-08-25T16:47:35.762948248Z"
     dependencies:
     - condition: csi-secrets-store-provider-azure.enabled
@@ -150,6 +169,23 @@ entries:
   sitecore-init:
   - apiVersion: v2
     appVersion: 10.3.1
+    created: "2023-09-04T17:05:19.022196565Z"
+    dependencies:
+    - name: init-mssql
+      repository: ""
+      version: 1.0.0
+    - name: init-solr
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart for Kubernetes
+    digest: 2fcb56fd8776d3a7045e7d7f75d31e6d5f0668ff445188215a9d03b4a68b64b6
+    name: sitecore-init
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-init-1.0.8/sitecore-init-1.0.8.tgz
+    version: 1.0.8
+  - apiVersion: v2
+    appVersion: 10.3.1
     created: "2023-08-30T12:12:57.256347258Z"
     dependencies:
     - name: init-mssql
@@ -243,6 +279,29 @@ entries:
   sitecore-xm-103:
   - apiVersion: v2
     appVersion: 10.3.1
+    created: "2023-09-04T17:05:19.247051656Z"
+    dependencies:
+    - name: cd
+      repository: ""
+      version: 1.0.0
+    - name: cm
+      repository: ""
+      version: 1.0.0
+    - name: id
+      repository: ""
+      version: 1.0.0
+    - name: rendering
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart for Sitecore to run it in Kubernetes
+    digest: 4c5da716b93b0838a2602c1957730013cc1fb83307db63137037730c66aa10c8
+    name: sitecore-xm-103
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm-103-1.0.5/sitecore-xm-103-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v2
+    appVersion: 10.3.1
     created: "2023-08-23T16:42:45.034976192Z"
     dependencies:
     - name: cd
@@ -264,4 +323,4 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm-103-1.0.4/sitecore-xm-103-1.0.4.tgz
     version: 1.0.4
-generated: "2023-08-30T12:12:57.256681763Z"
+generated: "2023-09-04T17:05:19.247100356Z"
