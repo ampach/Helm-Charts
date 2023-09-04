@@ -349,6 +349,29 @@ entries:
   sitecore-xm1-103:
   - apiVersion: v2
     appVersion: 10.3.1
+    created: "2023-09-04T18:50:48.286313363Z"
+    dependencies:
+    - name: cd
+      repository: ""
+      version: 1.0.0
+    - name: cm
+      repository: ""
+      version: 1.0.0
+    - name: id
+      repository: ""
+      version: 1.0.0
+    - name: rendering
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart for Sitecore to run it in Kubernetes
+    digest: 73c6ba5a23022edaded0e1f58411dfa0d01f37887d573dcbdb3a382e70419974
+    name: sitecore-xm1-103
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-1.0.9/sitecore-xm1-103-1.0.9.tgz
+    version: 1.0.9
+  - apiVersion: v2
+    appVersion: 10.3.1
     created: "2023-09-04T17:49:12.151615721Z"
     dependencies:
     - name: cd
@@ -393,4 +416,22 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-1.0.7/sitecore-xm1-103-1.0.7.tgz
     version: 1.0.7
-generated: "2023-09-04T17:49:12.151640921Z"
+  sitecore-xm1-103-init:
+  - apiVersion: v2
+    appVersion: 10.3.1
+    created: "2023-09-04T18:50:48.429244618Z"
+    dependencies:
+    - name: init-mssql
+      repository: ""
+      version: 1.0.0
+    - name: init-solr
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart for Kubernetes
+    digest: 4bcb8679167e68f3d2e1ead89dc72a2957ae7cb0c8a5327f56b1f5043ef84c2b
+    name: sitecore-xm1-103-init
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-init-1.0.9/sitecore-xm1-103-init-1.0.9.tgz
+    version: 1.0.9
+generated: "2023-09-04T18:50:48.429313621Z"
