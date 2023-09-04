@@ -86,7 +86,10 @@ spec:
                   name: sitecore-database
                   key: Forms_Database_Password
             - name: Sql_Database_Prefix
-              value: {{ .Values.sqlDatabasePrefix }}
+              valueFrom:
+              secretKeyRef:
+                name: sitecore-database
+                key: Sitecore_Database_Prefix
             - name: Sql_Custom_Database_Prefix_Update_From
               value: {{ .Values.sqlCustomDatabasePrefixUpdateFrom }}
           resources:

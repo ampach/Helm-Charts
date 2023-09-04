@@ -12,8 +12,6 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: "sitecore-init-solr"
 
-solrCorePrefixName: sitecore
-
 nodeSelector:
         kubernetes.io/os: windows
 

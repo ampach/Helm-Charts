@@ -12,7 +12,7 @@ id:
     
 rendering:
   image:
-    repository: ghcr.io/ampach/sitecore/sitecore-xm1-rendering
+    repository: ghcr.io/ampach/sitecore-sxastarter
   imagePullSecrets: 
     - name: regcred-dev
     
@@ -26,7 +26,6 @@ cm:
     - name: regcred-dev
 
 global:
-  solrCorePrefixName: sitecore
   cd:
     ingress:
       hosts:

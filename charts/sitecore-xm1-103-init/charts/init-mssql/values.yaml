@@ -12,7 +12,6 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: "sitecore-init-mssql"
 
-sqlDatabasePrefix: sitecore
 sqlCustomDatabasePrefixUpdateFrom:
 
 

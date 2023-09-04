@@ -4,7 +4,7 @@ image:
   repository: scr.sitecore.com/sxp/sitecore-xm1-cm
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "10.2-ltsc2019"
+  tag: "10.3-ltsc2022"
 
 imagePullSecrets: 
   - name: sitecore-docker-registry
@@ -12,12 +12,20 @@ nameOverride: ""
 fullnameOverride: "sitecore-cm"
 
 sidecar:
+  enabled: false
   name: sitecore-item-sync
   image:
     repository: scr.sitecore.com/sxp/sitecore-xm1-cm
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: "10.2-ltsc2019"
+  resources:
+  requests:
+    memory: 2500Mi
+    cpu: 1000m
+  limits:
+    memory: 4Gi
+    cpu: 1500m
 
 service:
   type: ClusterIP
@@ -30,6 +38,20 @@ ingress:
   hosts: []
   tls: []
 
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  capabilities:
+    drop:
+      - ALL
+  allowPrivilegeEscalation: false
+  runAsGroup: 3000
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+
 resources:
   requests:
     memory: 2500Mi
@@ -38,7 +60,8 @@ resources:
     memory: 4Gi
     cpu: 1500m
 
-nodeSelector: {}
+nodeSelector:
+  kubernetes.io/os: windows
 
 autoscaling:
   enabled: false
@@ -46,3 +69,5 @@ autoscaling:
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
+tolerations: []
+affinity: {}

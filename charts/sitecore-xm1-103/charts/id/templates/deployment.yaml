@@ -36,17 +36,9 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
-            capabilities:
-              drop:
-                - ALL
-            allowPrivilegeEscalation: false
-            runAsGroup: 3000
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
+            {{- toYaml .Values.securityContext | nindent 12 }}
           ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
+            - containerPort: {{ .Values.service.port }}
           env:
             - name: Database_Server
               valueFrom:
@@ -83,6 +75,11 @@ spec:
                 secretKeyRef:
                   name: sitecore-license
                   key: Sitecore_License
+            - name: Sql_Database_Prefix
+              valueFrom:
+              secretKeyRef:
+                name: sitecore-database
+                key: Sitecore_Database_Prefix  
             - name: Sitecore_Sitecore__IdentityServer__SitecoreMemberShipOptions__ConnectionString
               value: Data Source=$(Database_Server);Initial Catalog=Sitecore.Core;User ID=$(Core_Database_Username);Password=$(Core_Database_Password);
             {{- with (first .Values.global.cm.ingress.hosts) }}
@@ -117,9 +114,21 @@ spec:
             timeoutSeconds: 300
             periodSeconds: 30
             failureThreshold: 10
+          volumeMounts:
+          - mountPath: C:\Identity\logs
+            name: logs
+            subPath: id
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+      - name: logs
+        persistentVolumeClaim:
+          claimName: logs
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
       tolerations:
-      - key: "workload"
-        value: "win"
-        effect: "NoSchedule"
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -15,7 +15,6 @@ init-solr:
         kubernetes.io/os: windows
   imagePullSecrets: 
     - name: regcred-dev
-  solrCorePrefixName: sitecore
 
 persistentVolume:
   deviceDetection:

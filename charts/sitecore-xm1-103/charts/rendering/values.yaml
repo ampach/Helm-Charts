@@ -23,6 +23,25 @@ ingress:
   hosts: []
   tls: []
 
+settings:
+  fetchMode: GraphQL
+  graphQlEndpoint: ""
+  defaultLanguage: ""
+  sitecoreApiHost: "cd"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  capabilities:
+    drop:
+      - ALL
+  allowPrivilegeEscalation: false
+  runAsGroup: 3000
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
 resources:
   requests:
     memory: 2500Mi
@@ -31,7 +50,8 @@ resources:
     memory: 4Gi
     cpu: 1500m
 
-nodeSelector: {}
+nodeSelector:
+  kubernetes.io/os: windows
 
 autoscaling:
   enabled: false
@@ -40,8 +60,5 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-settings:
-  fetchMode: GraphQL
-  graphQlEndpoint: ""
-  defaultLanguage: ""
-  sitecoreApiHost: "cd"
+tolerations: []
+affinity: {}

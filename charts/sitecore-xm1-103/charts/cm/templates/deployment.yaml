@@ -36,17 +36,9 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
-            capabilities:
-              drop:
-                - ALL
-            allowPrivilegeEscalation: false
-            runAsGroup: 3000
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
+            {{- toYaml .Values.securityContext | nindent 12 }}
           ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
+            - containerPort: {{ .Values.service.port }}
           env:
             - name: Sitecore_InstanceName
               valueFrom:
@@ -122,21 +114,40 @@ spec:
                 secretKeyRef:
                   name: sitecore-license
                   key: Sitecore_License
+            - name: Sql_Database_Prefix
+              valueFrom:
+              secretKeyRef:
+                name: sitecore-database
+                key: Sitecore_Database_Prefix  
+            - name: LOG_LEVEL_VALUE
+              valueFrom:
+                secretKeyRef:
+                  name: sitecore-common
+                  key: Sitecore_Log_Level_Value
             - name: Sitecore_ConnectionStrings_Core
-              value: Data Source=$(Database_Server);Initial Catalog=Sitecore.Core;User ID=$(Core_Database_Username);Password=$(Core_Database_Password);
+              value: Data Source=$(Database_Server);Initial Catalog=$(Sql_Database_Prefix).Core;User ID=$(Core_Database_Username);Password=$(Core_Database_Password);
             - name: Sitecore_ConnectionStrings_Security
-              value: Data Source=$(Database_Server);Initial Catalog=Sitecore.Core;User ID=$(Core_Database_Username);Password=$(Core_Database_Password);
+              value: Data Source=$(Database_Server);Initial Catalog=$(Sql_Database_Prefix).Core;User ID=$(Core_Database_Username);Password=$(Core_Database_Password);
             - name: Sitecore_ConnectionStrings_Master
-              value: Data Source=$(Database_Server);Initial Catalog=Sitecore.Master;User ID=$(Master_Database_Username);Password=$(Master_Database_Password);
+              value: Data Source=$(Database_Server);Initial Catalog=$(Sql_Database_Prefix).Master;User ID=$(Master_Database_Username);Password=$(Master_Database_Password);
             - name: Sitecore_ConnectionStrings_Web
-              value: Data Source=$(Database_Server);Initial Catalog=Sitecore.Web;User ID=$(Web_Database_Username);Password=$(Web_Database_Password);
+              value: Data Source=$(Database_Server);Initial Catalog=$(Sql_Database_Prefix).Web;User ID=$(Web_Database_Username);Password=$(Web_Database_Password);
             - name: Sitecore_ConnectionStrings_ExperienceForms
-              value: Data Source=$(Database_Server);Initial Catalog=Sitecore.ExperienceForms;User ID=$(Forms_Database_Username);Password=$(Forms_Database_Password);
+              value: Data Source=$(Database_Server);Initial Catalog=$(Sql_Database_Prefix).ExperienceForms;User ID=$(Forms_Database_Username);Password=$(Forms_Database_Password);
             - name: Sitecore_ConnectionStrings_Solr.Search
               valueFrom:
                 secretKeyRef:
                   name: sitecore-solr
                   key: Sitecore_ConnectionStrings_Solr
+            - name: Sitecore_GraphQL_Enabled
+              value: {{ .Values.graphQL.enabled | quote }}
+            - name: Sitecore_GraphQL_ExposePlayground
+              value: {{ .Values.graphQL.exposePlayground | quote }}
+            - name: Sitecore_GraphQL_UploadMediaOptions_EncryptionKey
+              valueFrom:
+                secretKeyRef:
+                  name: sitecore-security
+                  key: SITECORE_GRAPHQL_UPLOADMEDIAOPTIONS_ENCRYPTIONKEY
             {{- with (first .Values.global.id.ingress.hosts) }}
             - name: Sitecore_Identity_Server_Authority
               value: {{ printf "https://%s" .host }}
@@ -150,7 +161,10 @@ spec:
             - name: Sitecore_Identity_Server_Require_Https
               value: "false"
             - name: SOLR_CORE_PREFIX_NAME
-              value: {{ .Values.global.solrCorePrefixName }}
+              valueFrom:
+                secretKeyRef:
+                  name: sitecore-solr
+                  key: Sitecore_Solr_Core_Prefix
             - name: MEDIA_REQUEST_PROTECTION_SHARED_SECRET
               valueFrom:
                 secretKeyRef:
@@ -181,8 +195,14 @@ spec:
             timeoutSeconds: 300
             periodSeconds: 30
             failureThreshold: 10
+          volumeMounts:
+          - mountPath: C:\inetpub\wwwroot\App_Data\logs
+            name: logs
+            subPath: cm
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.resources | nindent 12 }}     
+        
+        {{- if .Values.sidecar.enabled }}
         - name: {{ .Values.sidecar.name }}
           image: "{{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
@@ -210,8 +230,18 @@ spec:
                   name: sitecore-security
                   key: SITECORE_IDENTITY_CLIENT_NAME
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.sidecar.resources | nindent 12 }}
+        {{ end }}
+      
+      volumes:
+        - name: logs
+          persistentVolumeClaim:
+            claimName: logs
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
       tolerations:
-      - key: "workload"
-        value: "win"
-        effect: "NoSchedule"
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

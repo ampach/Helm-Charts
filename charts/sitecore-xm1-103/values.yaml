@@ -3,7 +3,7 @@ cd:
     type: Recreate
   image:
     repository: scr.sitecore.com/sxp/sitecore-xm1-cd
-    tag: "{TAG}"
+    tag: "10.3-ltsc2022"
   env:
   nodeSelector:
     kubernetes.io/os: windows
@@ -14,8 +14,8 @@ id:
   strategy:
     type: Recreate
   image:
-    repository: scr.sitecore.com/sxp/sitecore-id6
-    tag: "{TAG}"
+    repository: scr.sitecore.com/sxp/sitecore-id7
+    tag: "10.3-ltsc2022"
   env:
   nodeSelector:
     kubernetes.io/os: windows
@@ -26,8 +26,8 @@ rendering:
   strategy:
     type: Recreate
   image:
-    repository: ghcr.io/ampach/sitecore/sitecore-xm1-rendering
-    tag: "{TAG}"
+    repository: ghcr.io/ampach/sitecore-sxastarter
+    tag: "10.3"
   env:
   nodeSelector:
         kubernetes.io/os: windows
@@ -44,8 +44,9 @@ cm:
     type: Recreate
   image:
     repository: scr.sitecore.com/sxp/sitecore-xm1-cm
-    tag: "{TAG}"
+    tag: "10.3-ltsc2022"
   sidecar:
+    enabled: false
     image:
       repository: ghcr.io/ampach/sitecore/sitecore-xm1-cm-items-sync
       tag: "{TAG}"
@@ -112,7 +113,6 @@ global:
   licenseFileSecretName: license.xml
   sqlSaPassword:
   telerikEncryptionKey:
-  solrCorePrefixName:
   metaLabels:
     business-owner: artsem.prashkovich
     technical-owner: artsem.prashkovich

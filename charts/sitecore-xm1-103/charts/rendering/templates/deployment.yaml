@@ -36,41 +36,39 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
-            capabilities:
-              drop:
-                - ALL
-            allowPrivilegeEscalation: false
-            runAsGroup: 3000
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
+            {{- toYaml .Values.securityContext | nindent 12 }}
           ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
+            - containerPort: {{ .Values.service.port }}
           env:
-          - name: VITE_SITECORE_API_HOST
+          - name: SITECORE_API_HOST
             value: {{ printf "http://%s" .Values.global.cm.internalName }}
-          - name: VITE_FETCH_WITH
+          - name: VERCEL
+            value: "true"
+          - name: FETCH_WITH
             value: {{ .Values.settings.fetchMode }}
-          - name: VITE_DEFAULT_LANGUAGE
+          - name: DEFAULT_LANGUAGE
             value: {{ .Values.settings.defaultLanguage }}
-          - name: VITE_VITE_JSS_MODE
-            value: connected
-          - name: VITE_SERVER_PORT
-            value: '80'  
-          - name: VITE_JSS_EDITING_SECRET
+          - name: NEXTJS_DIST_DIR
+            value: .next
+          - name: PORT
+            value: "80"
+          - name: JSS_EDITING_SECRET
             valueFrom:
               secretKeyRef:
                 name: sitecore-security
                 key: SITECORE_JSS_EDITING_SECRET
-          - name: VITE_SITECORE_API_KEY
+          - name: SITECORE_API_KEY
             valueFrom:
               secretKeyRef:
                 name: sitecore-security
                 key: SITECORE_JSS_API_KEY
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
       tolerations:
-      - key: "workload"
-        value: "win"
-        effect: "NoSchedule"
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

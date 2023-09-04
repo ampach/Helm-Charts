@@ -31,7 +31,10 @@ spec:
                   name: sitecore-solr
                   key: Sitecore_ConnectionStrings_Solr
             - name: SOLR_CORE_PREFIX_NAME
-              value: {{ .Values.solrCorePrefixName }}
+              valueFrom:
+                secretKeyRef:
+                  name: sitecore-solr
+                  key: Sitecore_Solr_Core_Prefix            
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       restartPolicy: Never
