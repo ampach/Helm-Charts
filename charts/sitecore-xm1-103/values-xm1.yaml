@@ -6,7 +6,7 @@ cd:
 
 id:
   image:
-    repository: scr.sitecore.com/sxp/sitecore-id6
+    repository: scr.sitecore.com/sxp/sitecore-id7
   imagePullSecrets: 
     - name: regcred-dev
     
