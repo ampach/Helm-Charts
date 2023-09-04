@@ -11,9 +11,6 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: "sitecore-cd"
 
-graphQL:
-  enabled: false
-  exposePlayground: false
 
 service:
   type: ClusterIP

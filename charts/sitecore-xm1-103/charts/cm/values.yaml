@@ -11,6 +11,10 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: "sitecore-cm"
 
+graphQL:
+  enabled: false
+  exposePlayground: false
+
 sidecar:
   enabled: false
   name: sitecore-item-sync
