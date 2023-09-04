@@ -349,6 +349,29 @@ entries:
   sitecore-xm1-103:
   - apiVersion: v2
     appVersion: 10.3.1
+    created: "2023-09-04T17:49:12.151615721Z"
+    dependencies:
+    - name: cd
+      repository: ""
+      version: 1.0.0
+    - name: cm
+      repository: ""
+      version: 1.0.0
+    - name: id
+      repository: ""
+      version: 1.0.0
+    - name: rendering
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart for Sitecore to run it in Kubernetes
+    digest: 346ff3ba62edb8376583b342deb1d9516985d6f6040da3db33cf19e88ba67f8d
+    name: sitecore-xm1-103
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-1.0.8/sitecore-xm1-103-1.0.8.tgz
+    version: 1.0.8
+  - apiVersion: v2
+    appVersion: 10.3.1
     created: "2023-09-04T17:31:08.570939979Z"
     dependencies:
     - name: cd
@@ -370,4 +393,4 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-1.0.7/sitecore-xm1-103-1.0.7.tgz
     version: 1.0.7
-generated: "2023-09-04T17:31:08.570978979Z"
+generated: "2023-09-04T17:49:12.151640921Z"
