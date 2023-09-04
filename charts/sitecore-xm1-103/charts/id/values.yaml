@@ -35,7 +35,7 @@ securityContext:
   allowPrivilegeEscalation: false
   runAsGroup: 3000
   readOnlyRootFilesystem: true
-  runAsNonRoot: true
+  runAsNonRoot: false
 resources:
   requests:
     memory: 700Mi
