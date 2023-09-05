@@ -7,6 +7,6 @@ metadata:
     {{- include "cm.labels" . | nindent 4 }}
 spec:
   type: ExternalName
-  externalName: {{ printf "%s.%s" $fullName "sitecore.svc.cluster.local" }}
+  externalName: {{ printf "%s.%s" $fullName "default.svc.cluster.local" }}
   ports:
     - port: {{ .Values.service.port }}
