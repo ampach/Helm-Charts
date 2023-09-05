@@ -4,7 +4,7 @@ image:
   repository: rendering
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "10.2-ltsc2019"
+  tag: ""
 
 imagePullSecrets: 
   - name: sitecore-docker-registry
