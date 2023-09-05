@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: rendering
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "10.2-ltsc2019"
 
