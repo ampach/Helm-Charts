@@ -77,11 +77,11 @@ spec:
                   key: Sitecore_License
             - name: Sql_Database_Prefix
               valueFrom:
-              secretKeyRef:
-                name: sitecore-database
-                key: Sitecore_Database_Prefix  
+                secretKeyRef:
+                  name: sitecore-database
+                  key: Sitecore_Database_Prefix  
             - name: Sitecore_Sitecore__IdentityServer__SitecoreMemberShipOptions__ConnectionString
-              value: Data Source=$(Database_Server);Initial Catalog=Sitecore.Core;User ID=$(Core_Database_Username);Password=$(Core_Database_Password);
+              value: Data Source=$(Database_Server);Initial Catalog=$(Sql_Database_Prefix).Core;User ID=$(Core_Database_Username);Password=$(Core_Database_Password);
             {{- with (first .Values.global.cm.ingress.hosts) }}
             - name: Sitecore_Sitecore__IdentityServer__AccountOptions__PasswordRecoveryUrl
               value: {{ printf "https://%s/sitecore/login?rc=1" .host }}
