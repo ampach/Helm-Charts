@@ -116,9 +116,9 @@ spec:
                   key: Sitecore_License
             - name: Sql_Database_Prefix
               valueFrom:
-              secretKeyRef:
-                name: sitecore-database
-                key: Sitecore_Database_Prefix  
+                secretKeyRef:
+                  name: sitecore-database
+                  key: Sitecore_Database_Prefix  
             - name: LOG_LEVEL_VALUE
               valueFrom:
                 secretKeyRef:
