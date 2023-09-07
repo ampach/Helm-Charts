@@ -65,7 +65,7 @@ global:
           paths:
             - path: 
       tls:
-      - secretName: shops-cd-tls
+      - secretName: sitecore-ingress-tls
         hosts:
   cm:
     internalName: sitecore-cm
@@ -75,7 +75,7 @@ global:
           paths:
             - path:
       tls:
-      - secretName: shops-cm-tls
+      - secretName: sitecore-ingress-tls
         hosts:
   rendering:
     ingress:
@@ -84,7 +84,7 @@ global:
           paths:
             - path:
       tls:
-      - secretName: base-shop-tls
+      - secretName: sitecore-ingress-tls
         hosts:
   id:
     internalName: sitecore-id
@@ -94,7 +94,7 @@ global:
           paths:
             - path:
       tls:
-      - secretName: shops-id-tls
+      - secretName: sitecore-ingress-tls
         hosts:
   ingress:
     enabled: false

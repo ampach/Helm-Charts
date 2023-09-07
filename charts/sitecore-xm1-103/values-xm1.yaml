@@ -1,29 +1,26 @@
 cd:
   image:
-    repository: scr.sitecore.com/sxp/sitecore-xm1-cd
-  imagePullSecrets: 
-    - name: regcred-dev
+    repository: ghcr.io/ampach/sitecore-cd-sxa-spe-jss
+    tag: "10.3-ltsc2022"  
 
 id:
   image:
     repository: scr.sitecore.com/sxp/sitecore-id7
-  imagePullSecrets: 
-    - name: regcred-dev
+    tag: "10.3-ltsc2022"  
     
 rendering:
   image:
     repository: ghcr.io/ampach/sitecore-sxastarter
-  imagePullSecrets: 
-    - name: regcred-dev
+    tag: "10.3-2"  
     
 cm:
   sidecar:
     image:
       repository: ghcr.io/ampach/sitecore/sitecore-xm1-cm-items-sync
+      tag: "10.3-ltsc2022"  
   image:
-    repository: scr.sitecore.com/sxp/sitecore-xm1-cm
-  imagePullSecrets: 
-    - name: regcred-dev
+    repository: ghcr.io/ampach/sitecore-cm-sxa-spe-jss
+    tag: "10.3-ltsc2022"  
 
 global:
   cd:
@@ -33,7 +30,7 @@ global:
           paths:
             - path: /
       tls:
-      - secretName: sitecore-tls
+      - secretName: sitecore-ingress-tls
         hosts:
           - cd.sitecore-aks.com
   cm:
@@ -43,7 +40,7 @@ global:
           paths:
             - path: /
       tls:
-      - secretName: sitecore-tls
+      - secretName: sitecore-ingress-tls
         hosts:
           - cm.sitecore-aks.com
   rendering:
@@ -53,7 +50,7 @@ global:
           paths:
             - path: /
       tls:
-      - secretName: sitecore-tls
+      - secretName: sitecore-ingress-tls
         hosts:
           - sitecore-aks.com
   id:
@@ -63,6 +60,6 @@ global:
           paths:
             - path: /
       tls:
-      - secretName: sitecore-tls
+      - secretName: sitecore-ingress-tls
         hosts:
           - id.sitecore-aks.com

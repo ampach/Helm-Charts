@@ -6,6 +6,7 @@ init-mssql:
         kubernetes.io/os: windows
   imagePullSecrets: 
     - name: regcred-dev
+  sqlCustomDatabasePrefixUpdateFrom:
 
 init-solr:
   image:
