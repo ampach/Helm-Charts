@@ -10,6 +10,9 @@ csi-secrets-store-provider-azure:
   enabled: true
   secrets-store-csi-driver:    
     enableSecretRotation: true
+    linux:
+      crds:
+        enabled: false
     syncSecret:
       enabled: true
 
@@ -22,7 +25,7 @@ ingress-nginx:
     admissionWebhooks:
       patch:
         nodeSelector:
-        kubernetes.io/os: linux
+          kubernetes.io/os: linux
     service:
       externalTrafficPolicy: Local
       loadBalancerIP: ""
@@ -30,4 +33,4 @@ ingress-nginx:
         service.beta.kubernetes.io/azure-dns-label-name: staticip
   defaultBackend:
     nodeSelector:
-    kubernetes.io/os: linux
+      kubernetes.io/os: linux
