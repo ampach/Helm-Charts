@@ -1,0 +1,5 @@
+certManagerNamespace: cert-manager
+cert-manager:
+  enabled: true
+  installCRDs: true
+  namespace: cert-manager
