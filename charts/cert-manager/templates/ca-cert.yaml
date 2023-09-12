@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: local-ca-cert
-  namespace: {{ .Values.certManagerNamespace }}
+  namespace: {{ .Values.envNamespace }}
   annotations:
     # This is what defines this resource as a hook. Without this line, the
     # job is considered part of the release.

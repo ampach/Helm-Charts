@@ -109,7 +109,7 @@ global:
       nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
       nginx.ingress.kubernetes.io/proxy-body-size: "512m"
       nginx.ingress.kubernetes.io/proxy-buffer-size: "256k"
-      cert-manager.io/cluster-issuer: "internal-ca-issuer"    
+      cert-manager.io/cluster-issuer: "local-ca-issuer"    
   licenseFileSecretName: license.xml
   sqlSaPassword:
   telerikEncryptionKey:

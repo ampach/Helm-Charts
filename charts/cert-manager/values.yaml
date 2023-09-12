@@ -1,4 +1,4 @@
-certManagerNamespace: cert-manager
+envNamespace: default
 cert-manager:
   enabled: true
   installCRDs: true
