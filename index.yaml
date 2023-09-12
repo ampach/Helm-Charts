@@ -599,6 +599,23 @@ entries:
   sitecore-xm1-103-init:
   - apiVersion: v2
     appVersion: 10.3.1
+    created: "2023-09-12T12:24:13.247362258Z"
+    dependencies:
+    - name: init-mssql
+      repository: ""
+      version: 1.0.0
+    - name: init-solr
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart for Kubernetes
+    digest: 1900762d99b10b30ca5c27b4a8497a95d5470d55db16cdbaf48fd7d2b8da810a
+    name: sitecore-xm1-103-init
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-init-1.0.12/sitecore-xm1-103-init-1.0.12.tgz
+    version: 1.0.12
+  - apiVersion: v2
+    appVersion: 10.3.1
     created: "2023-09-07T15:21:32.957619699Z"
     dependencies:
     - name: init-mssql
@@ -648,4 +665,4 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-init-1.0.9/sitecore-xm1-103-init-1.0.9.tgz
     version: 1.0.9
-generated: "2023-09-11T18:16:17.285369821Z"
+generated: "2023-09-12T12:24:13.247414358Z"
