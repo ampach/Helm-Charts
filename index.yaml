@@ -1,6 +1,42 @@
 apiVersion: v1
 entries:
+  cert-manager:
+  - apiVersion: v2
+    appVersion: 10.3.1
+    created: "2023-09-12T14:20:51.348161695Z"
+    dependencies:
+    - condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: v1.12.4
+    description: A Helm chart for Kubernetes to instal and cofigure a local certtification
+      manager.
+    digest: b581a05544a4757464c5d07c57c843421d136af8840dc4e436bb7a5c50dc3d55
+    name: cert-manager
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/cert-manager-1.0.0/cert-manager-1.0.0.tgz
+    version: 1.0.0
   cluster-init:
+  - apiVersion: v2
+    appVersion: 10.3.1
+    created: "2023-09-12T14:20:51.506509876Z"
+    dependencies:
+    - condition: csi-secrets-store-provider-azure.enabled
+      name: csi-secrets-store-provider-azure
+      repository: https://azure.github.io/secrets-store-csi-driver-provider-azure/charts
+      version: 1.4.3
+    - condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.7.1
+    description: A Helm chart for Kubernetes
+    digest: eab09c33f5c5019054bae916286b83cf095bd31c9588ae9da900a7560b498a1c
+    name: cluster-init
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/cluster-init-1.0.10/cluster-init-1.0.10.tgz
+    version: 1.0.10
   - apiVersion: v2
     appVersion: 10.3.1
     created: "2023-09-11T18:16:17.285288516Z"
@@ -368,6 +404,29 @@ entries:
   sitecore-xm1-103:
   - apiVersion: v2
     appVersion: 10.3.1
+    created: "2023-09-12T14:20:51.674334522Z"
+    dependencies:
+    - name: cd
+      repository: ""
+      version: 1.0.0
+    - name: cm
+      repository: ""
+      version: 1.0.0
+    - name: id
+      repository: ""
+      version: 1.0.0
+    - name: rendering
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart for Sitecore to run it in Kubernetes
+    digest: a4d825f4834e0987fd648aef800d43bb2a1c7d41309dc7c73751ecdfee8c6169
+    name: sitecore-xm1-103
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-1.0.17/sitecore-xm1-103-1.0.17.tgz
+    version: 1.0.17
+  - apiVersion: v2
+    appVersion: 10.3.1
     created: "2023-09-07T15:21:32.819424656Z"
     dependencies:
     - name: cd
@@ -665,4 +724,4 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-init-1.0.9/sitecore-xm1-103-init-1.0.9.tgz
     version: 1.0.9
-generated: "2023-09-12T12:24:13.247414358Z"
+generated: "2023-09-12T14:20:51.674422123Z"
