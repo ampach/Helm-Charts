@@ -30,7 +30,7 @@ global:
           paths:
             - path: /
       tls:
-      - secretName: local-tls
+      - secretName: sitecore-ingress-tls
         hosts:
           - cd.sitecore-aks.com
   cm:
@@ -40,7 +40,7 @@ global:
           paths:
             - path: /
       tls:
-      - secretName: local-tls
+      - secretName: sitecore-ingress-tls
         hosts:
           - cm.sitecore-aks.com
   rendering:
@@ -50,7 +50,7 @@ global:
           paths:
             - path: /
       tls:
-      - secretName: local-tls
+      - secretName: sitecore-ingress-tls
         hosts:
           - sitecore-aks.com
   id:
@@ -60,6 +60,6 @@ global:
           paths:
             - path: /
       tls:
-      - secretName: local-tls
+      - secretName: sitecore-ingress-tls
         hosts:
           - id.sitecore-aks.com
