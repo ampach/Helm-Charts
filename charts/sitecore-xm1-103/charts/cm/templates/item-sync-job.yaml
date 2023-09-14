@@ -1,0 +1,60 @@
+{{- if .Values.sidecar.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ printf "%s-item-sync-%d" (include "cm.fullname" .) .Release.Revision }}
+  labels:
+    app: {{ printf "%s-item-sync" (include "cm.fullname" .) }}
+    {{- include "cm.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "1"
+
+spec:
+  ttlSecondsAfterFinished: 6000
+  template:
+    metadata:
+      labels:
+        app: {{ printf "%s-item-sync" (include "cm.fullname" .) }}
+        {{- include "cm.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Values.sidecar.name }}
+          image: "{{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
+          env:
+            - name: CM_HOST
+              value: {{ printf "http://%s.%s.svc.cluster.local/healthz/ready" .Values.global.cm.internalName .Release.Namespace }}
+            - name: ID_HOST
+              value: {{ printf "http://%s.%s.svc.cluster.local" .Values.global.id.internalName .Release.Namespace }}
+            - name: ID_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: sitecore-security
+                  key: SITECORE_IDENTITY_CLIENT_SECRET
+            - name: ID_CLIENT_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: sitecore-security
+                  key: SITECORE_IDENTITY_CLIENT_NAME       
+          resources:
+            {{- toYaml .Values.sidecar.resources | nindent 12 }}
+      restartPolicy: Never
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  backoffLimit: 5
+  {{ end }}

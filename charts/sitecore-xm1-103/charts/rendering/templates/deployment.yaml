@@ -41,9 +41,13 @@ spec:
             - containerPort: {{ .Values.service.port }}
           env:
           - name: SITECORE_API_HOST
-            value: {{ printf "http://%s" .Values.global.cm.internalName }}
-          - name: VERCEL
-            value: "true"
+            value: {{ printf "http://%s.%s.svc.cluster.local" .Values.global.cm.internalName .Release.Namespace }}
+          {{- with (index .Values.global.rendering.ingress.tls 0) }}
+          {{- with (index .hosts 0) }}
+          - name: PUBLIC_URL
+            value: {{ printf "https://%s" . }}
+          {{- end }}
+          {{- end }}
           - name: FETCH_WITH
             value: {{ .Values.settings.fetchMode }}
           - name: DEFAULT_LANGUAGE

@@ -165,6 +165,11 @@ spec:
                 secretKeyRef:
                   name: sitecore-solr
                   key: Sitecore_Solr_Core_Prefix
+            - name: SITECORE_JSS_EDITING_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: sitecore-security
+                  key: SITECORE_JSS_EDITING_SECRET            
             - name: MEDIA_REQUEST_PROTECTION_SHARED_SECRET
               valueFrom:
                 secretKeyRef:
@@ -200,39 +205,7 @@ spec:
             name: logs
             subPath: cm
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}     
-        
-        {{- if .Values.sidecar.enabled }}
-        - name: {{ .Values.sidecar.name }}
-          image: "{{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
-          securityContext:
-            capabilities:
-              drop:
-                - ALL
-            allowPrivilegeEscalation: false
-            runAsGroup: 3000
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-          env:
-            - name: CM_HOST
-              value: {{ printf "http://%s%s" .Values.global.cm.internalName "/healthz/ready" }}
-            - name: ID_HOST
-              value: {{ printf "http://%s" .Values.global.id.internalName }}
-            - name: ID_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: sitecore-security
-                  key: SITECORE_IDENTITY_CLIENT_SECRET
-            - name: ID_CLIENT_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: sitecore-security
-                  key: SITECORE_IDENTITY_CLIENT_NAME
-          resources:
-            {{- toYaml .Values.sidecar.resources | nindent 12 }}
-        {{ end }}
-      
+            {{- toYaml .Values.resources | nindent 12 }}  
       volumes:
         - name: logs
           persistentVolumeClaim:
