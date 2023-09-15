@@ -1,4 +1,4 @@
-{{- if .Values.sidecar.enabled }}
+{{- if .Values.itemSync.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -27,9 +27,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       containers:
-        - name: {{ .Values.sidecar.name }}
-          image: "{{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
+        - name: {{ .Values.itemSync.name }}
+          image: "{{ .Values.itemSync.image.repository }}:{{ .Values.itemSync.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.itemSync.image.pullPolicy }}
           env:
             - name: CM_HOST
               value: {{ printf "http://%s.%s.svc.cluster.local/healthz/ready" .Values.global.cm.internalName .Release.Namespace }}
@@ -46,7 +46,7 @@ spec:
                   name: sitecore-security
                   key: SITECORE_IDENTITY_CLIENT_NAME       
           resources:
-            {{- toYaml .Values.sidecar.resources | nindent 12 }}
+            {{- toYaml .Values.itemSync.resources | nindent 12 }}
       restartPolicy: Never
       {{- with .Values.affinity }}
       affinity:

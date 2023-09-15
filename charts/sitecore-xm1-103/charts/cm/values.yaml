@@ -15,12 +15,12 @@ graphQL:
   enabled: false
   exposePlayground: false
 
-sidecar:
+itemSync:
   enabled: false
   name: sitecore-item-sync
   image:
     repository: scr.sitecore.com/sxp/sitecore-xm1-cm
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     # Overrides the image tag whose default is the chart appVersion.
     tag: "10.2-ltsc2019"
   resources:

@@ -14,8 +14,8 @@ rendering:
     tag: "10.3-2"  
     
 cm:
-  sidecar:
-    enabled: false
+  itemSync:
+    enabled: true
     image:
       repository: ghcr.io/ampach/sitecore-items
       tag: "1.0.0"
@@ -27,40 +27,40 @@ global:
   cd:
     ingress:
       hosts:
-        - host: cd.sitecore-aks.com
+        - host: sccd.devops.family
           paths:
             - path: /
       tls:
-      - secretName: sitecore-ingress-tls
+      - secretName: tls-secret
         hosts:
-          - cd.sitecore-aks.com
+          - sccd.devops.family
   cm:
     ingress:
       hosts:
-        - host: cm.sitecore-aks.com
+        - host: sccm.devops.family
           paths:
             - path: /
       tls:
-      - secretName: sitecore-ingress-tls
+      - secretName: tls-secret
         hosts:
-          - cm.sitecore-aks.com
+          - sccm.devops.family
   rendering:
     ingress:
       hosts:
-        - host: sitecore-aks.com
+        - host: scwww.devops.family
           paths:
             - path: /
       tls:
-      - secretName: sitecore-ingress-tls
+      - secretName: tls-secret
         hosts:
-          - sitecore-aks.com
+          - scwww.devops.family
   id:
     ingress:
       hosts:
-        - host: id.sitecore-aks.com
+        - host: scid.devops.family
           paths:
             - path: /
       tls:
-      - secretName: sitecore-ingress-tls
+      - secretName: tls-secret
         hosts:
-          - id.sitecore-aks.com
+          - scid.devops.family
