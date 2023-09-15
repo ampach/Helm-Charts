@@ -9,20 +9,19 @@ metadata:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "4"
 spec:
-  secretName: local-tls
+  secretName: tls-secret
   isCA: false
-  commonName: "*.sitecore-aks.com"
-  subject:
-    organizations:
-      - Brimit LLC.
-    organizationalUnits:
-      - Sitecore
-  usages:
-    - server auth
-    - client auth
+  commonName: "*.devops.family"
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+      - "*.devops.family"
   dnsNames:
-  - "*.sitecore-aks.com"
+  - "*.devops.family"
   issuerRef:
-    name: local-ca-issuer
+    name: letsencrypt
+    kind: ClusterIssuer
   privateKey:
     rotationPolicy: Always

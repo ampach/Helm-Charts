@@ -3,3 +3,4 @@ cert-manager:
   enabled: true
   installCRDs: true
   namespace: cert-manager
+  clusterResourceNamespace: default
