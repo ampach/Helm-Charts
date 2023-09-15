@@ -3,6 +3,22 @@ entries:
   cert-manager:
   - apiVersion: v2
     appVersion: 10.3.1
+    created: "2023-09-15T13:30:06.226360591Z"
+    dependencies:
+    - condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: v1.12.4
+    description: A Helm chart for Kubernetes to instal and cofigure a local certtification
+      manager.
+    digest: c70e3f8efd41759ee70bf13e5782eed41e803c125d1e6b5c2fdda2e6184a342f
+    name: cert-manager
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/cert-manager-1.0.3/cert-manager-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 10.3.1
     created: "2023-09-12T16:39:37.820324984Z"
     dependencies:
     - condition: cert-manager.enabled
@@ -928,4 +944,4 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-init-1.0.9/sitecore-xm1-103-init-1.0.9.tgz
     version: 1.0.9
-generated: "2023-09-15T12:24:42.614805325Z"
+generated: "2023-09-15T13:30:06.226457993Z"
