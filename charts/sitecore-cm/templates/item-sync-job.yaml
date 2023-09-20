@@ -32,9 +32,9 @@ spec:
           imagePullPolicy: {{ .Values.itemSync.image.pullPolicy }}
           env:
             - name: CM_HOST
-              value: {{ printf "http://%s.%s.svc.cluster.local/healthz/ready" .Values.global.cm.internalName .Release.Namespace }}
+              value: {{ printf "http://%s.%s.svc.cluster.local/healthz/ready" .Values.fullnameOverride .Release.Namespace }}
             - name: ID_HOST
-              value: {{ printf "http://%s.%s.svc.cluster.local" .Values.global.id.internalName .Release.Namespace }}
+              value: {{ printf "http://%s.%s.svc.cluster.local" .Values.id.serviceName .Release.Namespace }}
             - name: ID_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:

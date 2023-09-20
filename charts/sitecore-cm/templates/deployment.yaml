@@ -148,16 +148,16 @@ spec:
                 secretKeyRef:
                   name: sitecore-security
                   key: SITECORE_GRAPHQL_UPLOADMEDIAOPTIONS_ENCRYPTIONKEY
-            {{- with (first .Values.global.id.ingress.hosts) }}
+            {{- with (first .Values.id.ingress.hosts) }}
             - name: Sitecore_Identity_Server_Authority
               value: {{ printf "https://%s" .host }}
             {{- end }}
-            {{- with (first .Values.global.cm.ingress.hosts) }}
+            {{- with (first .Values.ingress.hosts) }}
             - name: Sitecore_Identity_Server_CallbackAuthority
               value: {{ printf "https://%s" .host }}
             {{- end }}
             - name: Sitecore_Identity_Server_InternalAuthority
-              value: http://{{ .Values.global.id.internalName }}
+              value: http://{{ .Values.id.serviceName }}
             - name: Sitecore_Identity_Server_Require_Https
               value: "false"
             - name: SOLR_CORE_PREFIX_NAME
