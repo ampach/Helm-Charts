@@ -1,0 +1,75 @@
+sitecore-cd-role:
+  image:
+    repository: ghcr.io/ampach/sitecore-cd-sxa-spe-jss
+    tag: "10.3-ltsc2022"
+  ingress:
+    hosts:
+      - host: sccd.devops.family
+        paths:
+          - path: /
+    tls:
+    - secretName: tls-secret
+      hosts:
+        - sccd.devops.family
+
+sitecore-id-role:
+  image:
+    repository: ghcr.io/ampach/sitecore-id
+    tag: "10.3-ltsc2022"
+  ingress:
+      hosts:
+        - host: scid.devops.family
+          paths:
+            - path: /
+      tls:
+      - secretName: tls-secret
+        hosts:
+          - scid.devops.family
+  cm:
+    hosts:
+      - host: scid.devops.family
+    
+    
+sitecore-rendering-role:
+  image:
+    repository: ghcr.io/ampach/sitecore-sxastarter
+    tag: "10.3-2"
+  ingress:
+    hosts:
+      - host: scwww.devops.family
+        paths:
+          - path: /
+    tls:
+    - secretName: tls-secret
+      hosts:
+        - scwww.devops.family
+  cd:
+    serviceName: sitecore-cd
+  cm:
+    serviceName: sitecore-cm
+    
+sitecore-cm-role:
+  itemSync:
+    enabled: true
+    image:
+      repository: ghcr.io/ampach/sitecore-items
+      tag: "1.0.0"
+
+  image:
+    repository: ghcr.io/ampach/sitecore-cm-sxa-spe-jss
+    tag: "10.3-ltsc2022"
+
+  ingress:
+    hosts:
+      - host: sccm.devops.family
+        paths:
+          - path: /
+    tls:
+    - secretName: tls-secret
+      hosts:
+        - sccm.devops.family
+
+  id:
+    hosts:
+      - host: scid.devops.family
+    
