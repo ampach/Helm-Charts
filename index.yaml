@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  cd:
+  - apiVersion: v2
+    appVersion: 10.3.0
+    created: "2023-09-20T19:11:17.683626609Z"
+    description: A Sitecore CD server Helm chart for Kubernetes
+    digest: 196823fbc28297ba8c2bd62455b8d9139ede014925d79074f1a4f0fc3066768d
+    name: cd
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/cd-1.0.0/cd-1.0.0.tgz
+    version: 1.0.0
   cert-manager:
   - apiVersion: v2
     appVersion: 10.3.1
@@ -66,6 +77,25 @@ entries:
     - https://github.com/ampach/Helm-Charts/releases/download/cert-manager-1.0.0/cert-manager-1.0.0.tgz
     version: 1.0.0
   cluster-init:
+  - apiVersion: v2
+    appVersion: 10.3.1
+    created: "2023-09-20T19:11:17.830901725Z"
+    dependencies:
+    - condition: csi-secrets-store-provider-azure.enabled
+      name: csi-secrets-store-provider-azure
+      repository: https://azure.github.io/secrets-store-csi-driver-provider-azure/charts
+      version: 1.4.3
+    - condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.7.1
+    description: A Helm chart for Kubernetes
+    digest: e5e9b4bdab17994dc8267d774c5c290503ecd4a5a4e1674e9b9c9406853393ec
+    name: cluster-init
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/cluster-init-1.0.14/cluster-init-1.0.14.tgz
+    version: 1.0.14
   - apiVersion: v2
     appVersion: 10.3.1
     created: "2023-09-15T12:24:42.614638723Z"
@@ -256,6 +286,39 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/cluster-init-1.0.3/cluster-init-1.0.3.tgz
     version: 1.0.3
+  cm:
+  - apiVersion: v2
+    appVersion: 10.3.0
+    created: "2023-09-20T19:11:17.970201645Z"
+    description: A Sitecore CM server Helm chart for Kubernetes
+    digest: f125d1b42abacaf52624c256987999119ff334317d63b710305a7d5e623e4bb6
+    name: cm
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/cm-1.0.0/cm-1.0.0.tgz
+    version: 1.0.0
+  id:
+  - apiVersion: v2
+    appVersion: 10.3.0
+    created: "2023-09-20T19:11:18.109027065Z"
+    description: A Sitecore Identity Server Helm chart for Kubernetes
+    digest: 5bfe894e8b734db9ea3ae1e8cff7d05ca73a6f52d9bce9cd0ffc6afbd8c23e7a
+    name: id
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/id-1.0.0/id-1.0.0.tgz
+    version: 1.0.0
+  rendering:
+  - apiVersion: v2
+    appVersion: 10.3.0
+    created: "2023-09-20T19:11:18.24261244Z"
+    description: A Sitecore Rendering Host Helm chart for Kubernetes
+    digest: 082d3bd6032f784b024fd11031022025ac96f5934c9c8e2677cae4b8660d835e
+    name: rendering
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/rendering-1.0.0/rendering-1.0.0.tgz
+    version: 1.0.0
   sitecore-dev:
   - apiVersion: v2
     appVersion: 10.3.1
@@ -967,4 +1030,4 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-init-1.0.9/sitecore-xm1-103-init-1.0.9.tgz
     version: 1.0.9
-generated: "2023-09-15T15:29:52.263563655Z"
+generated: "2023-09-20T19:11:18.24270184Z"
