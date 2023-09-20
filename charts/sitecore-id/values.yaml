@@ -1,0 +1,57 @@
+replicaCount: 1
+
+image:
+  repository: scr.sitecore.com/sxp/sitecore-id7
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "10.3-ltsc2022"
+
+imagePullSecrets: 
+  - name: sitecore-docker-registry
+nameOverride: ""
+fullnameOverride: "sitecore-id"
+
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+  hosts: []
+  tls: []
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  capabilities:
+    drop:
+      - ALL
+  allowPrivilegeEscalation: false
+  runAsGroup: 3000
+  readOnlyRootFilesystem: true
+  runAsNonRoot: false
+resources:
+  requests:
+    memory: 700Mi
+    cpu: 200m
+  limits:
+    memory: 1Gi
+    cpu: 300m
+
+nodeSelector:
+  kubernetes.io/os: windows
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+tolerations: []
+affinity: {}
