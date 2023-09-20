@@ -20,14 +20,14 @@ metadata:
     {{- include "rendering.labels" . | nindent 4 }}
   {{- with .Values }}
   annotations:
-    {{- toYaml .global.ingress.annotations | nindent 4 }}
+    {{- toYaml .ingress.annotations | nindent 4 }}
   {{- end }}
 spec:
   {{- if and .Values.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
   ingressClassName: {{ .Values.ingress.className }}
   {{- end }}  
   rules:
-    {{- range .Values.global.rendering.ingress.hosts }}
+    {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
@@ -49,7 +49,7 @@ spec:
           {{- end }}
     {{- end }}
   tls:
-    {{- range .Values.global.rendering.ingress.tls }}
+    {{- range .Values.ingress.tls }}
     - secretName: {{ .secretName }}
       hosts:
         {{- range .hosts }}

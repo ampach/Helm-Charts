@@ -1,5 +1,5 @@
 apiVersion: v2
-name: sitecore-xm1-103-init
+name: sitecore-xm1-init
 description: A Helm chart for Kubernetes to initialize Sitecore environment with all required data such as SQL databases and Solr indaxes
 
 # A chart can be either an 'application' or a 'library' chart.

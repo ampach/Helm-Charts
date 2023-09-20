@@ -82,15 +82,15 @@ spec:
                   key: Sitecore_Database_Prefix  
             - name: Sitecore_Sitecore__IdentityServer__SitecoreMemberShipOptions__ConnectionString
               value: Data Source=$(Database_Server);Initial Catalog=$(Sql_Database_Prefix).Core;User ID=$(Core_Database_Username);Password=$(Core_Database_Password);
-            {{- with (first .Values.global.cm.ingress.hosts) }}
+            {{- with (first .Values.cm.ingress.hosts) }}
             - name: Sitecore_Sitecore__IdentityServer__AccountOptions__PasswordRecoveryUrl
               value: {{ printf "https://%s/sitecore/login?rc=1" .host }}
             {{- end }}
-            {{- range $index, $value := .Values.global.cm.ingress.hosts }}
+            {{- range $index, $value := .Values.cm.ingress.hosts }}
             - name: {{ printf "Sitecore_Sitecore__IdentityServer__Clients__DefaultClient__AllowedCorsOrigins__AllowedCorsOriginsGroup%s" (add1 $index | toString) }}
               value: {{ printf "https://%s" $value.host }}
             {{- end }}            
-            {{- with (first .Values.global.id.ingress.hosts) }}
+            {{- with (first .Values.ingress.hosts) }}
             - name: Sitecore_Sitecore__IdentityServer__PublicOrigin
               value: {{ printf "https://%s" .host }}
             {{- end }}
