@@ -1,0 +1,15 @@
+dependencies:
+- name: sitecore-cd-role
+  repository: https://ampach.github.io/Helm-Charts
+  version: 1.0.0
+- name: sitecore-cm-role
+  repository: https://ampach.github.io/Helm-Charts
+  version: 1.0.0
+- name: sitecore-id-role
+  repository: https://ampach.github.io/Helm-Charts
+  version: 1.0.0
+- name: sitecore-rendering-role
+  repository: https://ampach.github.io/Helm-Charts
+  version: 1.0.0
+digest: sha256:6dcc33bc9b11bc778db271316fcd6685409923c18a7622f2a62b3e4789784767
+generated: "2023-09-21T00:11:56.0466257+02:00"
