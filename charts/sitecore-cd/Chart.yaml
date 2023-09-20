@@ -1,6 +1,6 @@
 apiVersion: v2
-name: cd
-description: A Sitecore CD server Helm chart for Kubernetes
+name: sitecore-cd-role
+description: A Sitecore CD Role Helm chart for Kubernetes
 
 
 type: application
