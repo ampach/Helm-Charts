@@ -1,6 +1,6 @@
 apiVersion: v2
-name: sitecore-xm1-103-init
-description: A Helm chart for Kubernetes to initialize Sitecore environment with all required data such as SQL databases and Solr indaxes
+name: sitecore-xm1-103
+description: A Helm chart for Sitecore to run it in Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -15,16 +15,20 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: "1.0.0"
+version: 1.0.23
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: 10.3.1
+appVersion: "10.3.1"
 
 dependencies:
-  - name: "init-mssql"
+  - name: "cd"
     version: "1.0.0"
-  - name: "init-solr"
+  - name: "cm"
+    version: "1.0.0"
+  - name: "id"
+    version: "1.0.0"
+  - name: "rendering"
     version: "1.0.0"

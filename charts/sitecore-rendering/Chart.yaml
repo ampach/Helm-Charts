@@ -1,5 +1,5 @@
 apiVersion: v2
-name: rendering
+name: sitecore-rendering-role
 description: A Sitecore Rendering Host Helm chart for Kubernetes
 
 
