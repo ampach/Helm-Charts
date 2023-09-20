@@ -286,6 +286,27 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/cluster-init-1.0.3/cluster-init-1.0.3.tgz
     version: 1.0.3
+  - apiVersion: v2
+    appVersion: 10.3.1
+    created: "2023-09-20T19:51:21.091115736Z"
+    dependencies:
+    - condition: csi-secrets-store-provider-azure.enabled
+      name: csi-secrets-store-provider-azure
+      repository: https://azure.github.io/secrets-store-csi-driver-provider-azure/charts
+      version: 1.4.3
+    - condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.7.1
+    description: A Helm chart for Kubernetes to setup and configure all required dependencies
+      such as NGINX ingress controller and CSI Secrets Store Provider for Azure Key
+      Vault
+    digest: 52a90a84b7ad5cd760a2470680749b09d73eaed0f46e3b557afcd901ab22c5ff
+    name: cluster-init
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/cluster-init-1.0.0/cluster-init-1.0.0.tgz
+    version: 1.0.0
   cm:
   - apiVersion: v2
     appVersion: 10.3.0
@@ -318,6 +339,28 @@ entries:
     type: application
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/rendering-1.0.0/rendering-1.0.0.tgz
+    version: 1.0.0
+  sitecore-cd-role:
+  - apiVersion: v2
+    appVersion: 10.3.0
+    created: "2023-09-20T19:51:21.247741801Z"
+    description: A Sitecore CD Role Helm chart for Kubernetes
+    digest: 85c26cd883dccadc24c708ce54690f08058052719e63ca160eacbd38231954e4
+    name: sitecore-cd-role
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-cd-role-1.0.0/sitecore-cd-role-1.0.0.tgz
+    version: 1.0.0
+  sitecore-cm-role:
+  - apiVersion: v2
+    appVersion: 10.3.0
+    created: "2023-09-20T19:51:21.389410273Z"
+    description: A Sitecore CM server Helm chart for Kubernetes
+    digest: b4d47e9e8ff56fde0b9d4ea0ed1f0cc1830252ded1d92eb211e349c2dea225c8
+    name: sitecore-cm-role
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-cm-role-1.0.0/sitecore-cm-role-1.0.0.tgz
     version: 1.0.0
   sitecore-dev:
   - apiVersion: v2
@@ -389,6 +432,41 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-dev-1.0.3/sitecore-dev-1.0.3.tgz
     version: 1.0.3
+  - apiVersion: v2
+    appVersion: 10.3.1
+    created: "2023-09-20T19:51:21.52504675Z"
+    dependencies:
+    - condition: mssql.enabled
+      name: mssql
+      repository: ""
+      version: 1.0.0
+    - condition: solr.enabled
+      name: solr
+      repository: ""
+      version: 1.0.0
+    - condition: redis.enabled
+      name: redis
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart for Kubernetes to install MSSQL Server, Sorl and Redis.
+      Usually used for Non-Production environmets.
+    digest: 683995cd7c64be190d74415c994872652db32d27a4577c4bc13acfa126f78c46
+    name: sitecore-dev
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-dev-1.0.0/sitecore-dev-1.0.0.tgz
+    version: 1.0.0
+  sitecore-id-role:
+  - apiVersion: v2
+    appVersion: 10.3.0
+    created: "2023-09-20T19:51:21.668538999Z"
+    description: A Sitecore Identity Server Helm chart for Kubernetes
+    digest: a44e433c23361fa2cb6d2dca82d07203969a3de7a25aa134af7993ae284b1d50
+    name: sitecore-id-role
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-id-role-1.0.0/sitecore-id-role-1.0.0.tgz
+    version: 1.0.0
   sitecore-init:
   - apiVersion: v2
     appVersion: 10.3.1
@@ -475,6 +553,17 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-init-1.0.4/sitecore-init-1.0.4.tgz
     version: 1.0.4
+  sitecore-rendering-role:
+  - apiVersion: v2
+    appVersion: 10.3.0
+    created: "2023-09-20T19:51:21.805768369Z"
+    description: A Sitecore Rendering Host Helm chart for Kubernetes
+    digest: 2b8ddd06e99d5dfddb46f6166c7044d5fcdb48e9aec24dc55b6e713f32b2f522
+    name: sitecore-rendering-role
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-rendering-role-1.0.0/sitecore-rendering-role-1.0.0.tgz
+    version: 1.0.0
   sitecore-xm-102:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -961,6 +1050,30 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-1.0.7/sitecore-xm1-103-1.0.7.tgz
     version: 1.0.7
+  - apiVersion: v2
+    appVersion: 10.3.1
+    created: "2023-09-20T19:51:21.948794249Z"
+    dependencies:
+    - name: cd
+      repository: ""
+      version: 1.0.0
+    - name: cm
+      repository: ""
+      version: 1.0.0
+    - name: id
+      repository: ""
+      version: 1.0.0
+    - name: rendering
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart for Kubernetes which accumulates all Sitecore XM1 roles
+      as sub-charts.
+    digest: b6a967e63cec16737ede7d631efb291ea45a424d868c38377595bddd758af354
+    name: sitecore-xm1-103
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-1.0.0/sitecore-xm1-103-1.0.0.tgz
+    version: 1.0.0
   sitecore-xm1-103-init:
   - apiVersion: v2
     appVersion: 10.3.1
@@ -1030,4 +1143,22 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-init-1.0.9/sitecore-xm1-103-init-1.0.9.tgz
     version: 1.0.9
-generated: "2023-09-20T19:11:18.24270184Z"
+  - apiVersion: v2
+    appVersion: 10.3.1
+    created: "2023-09-20T19:51:22.076038052Z"
+    dependencies:
+    - name: init-mssql
+      repository: ""
+      version: 1.0.0
+    - name: init-solr
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart for Kubernetes to initialize Sitecore environment with
+      all required data such as SQL databases and Solr indaxes
+    digest: f10ca16665ca94e48aeb1ca48d0e255f221c57018f73a57b04fe45cd0f48bf22
+    name: sitecore-xm1-103-init
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-103-init-1.0.0/sitecore-xm1-103-init-1.0.0.tgz
+    version: 1.0.0
+generated: "2023-09-20T19:51:22.076133753Z"
