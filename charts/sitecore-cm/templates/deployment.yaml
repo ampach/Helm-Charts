@@ -148,7 +148,7 @@ spec:
                 secretKeyRef:
                   name: sitecore-security
                   key: SITECORE_GRAPHQL_UPLOADMEDIAOPTIONS_ENCRYPTIONKEY
-            {{- with (first .Values.id.ingress.hosts) }}
+            {{- with (first .Values.id.hosts) }}
             - name: Sitecore_Identity_Server_Authority
               value: {{ printf "https://%s" .host }}
             {{- end }}
