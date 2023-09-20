@@ -108,6 +108,32 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-rendering-role-1.0.0/sitecore-rendering-role-1.0.0.tgz
     version: 1.0.0
+  sitecore-xm1:
+  - apiVersion: v2
+    appVersion: 10.3.1
+    created: "2023-09-20T22:45:09.348612512Z"
+    dependencies:
+    - name: sitecore-cd-role
+      repository: https://ampach.github.io/Helm-Charts
+      version: 1.0.0
+    - name: sitecore-cm-role
+      repository: https://ampach.github.io/Helm-Charts
+      version: 1.0.0
+    - name: sitecore-id-role
+      repository: https://ampach.github.io/Helm-Charts
+      version: 1.0.0
+    - condition: sitecore-rendering-role.enabled
+      name: sitecore-rendering-role
+      repository: https://ampach.github.io/Helm-Charts
+      version: 1.0.0
+    description: A Helm chart for Kubernetes which accumulates all Sitecore XM1 roles
+      as sub-charts.
+    digest: 90017492fe2ecfee1bd42239888e8bd2fac98149f9649ca4ca5863f7d28abe71
+    name: sitecore-xm1
+    type: application
+    urls:
+    - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-1.0.0/sitecore-xm1-1.0.0.tgz
+    version: 1.0.0
   sitecore-xm1-init:
   - apiVersion: v2
     appVersion: 10.3.1
@@ -127,4 +153,4 @@ entries:
     urls:
     - https://github.com/ampach/Helm-Charts/releases/download/sitecore-xm1-init-1.0.0/sitecore-xm1-init-1.0.0.tgz
     version: 1.0.0
-generated: "2023-09-20T22:10:06.987455453Z"
+generated: "2023-09-20T22:45:09.348624712Z"
