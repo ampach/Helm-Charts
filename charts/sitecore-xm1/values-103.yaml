@@ -27,7 +27,7 @@ sitecore-id-role:
           - scid.devops.family
   cm:
     hosts:
-      - host: scid.devops.family
+      - host: sccm.devops.family
     
     
 sitecore-rendering-role:
