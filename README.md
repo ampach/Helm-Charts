@@ -1,3 +1,6 @@
+![DALL·E 2023-11-28 18 43 20 - A top banner for a Helm chart repository designed for installing Sitecore, with a corrected and more vibrant design  The banner features a prominent H](https://github.com/ampach/Sitecore.Helm-Charts/assets/1925984/0b54b5e4-7ede-41d4-93b2-7dca5630eeca)
+
+
 # Sitecore Helm Charts
 
 This GitHub repository represents a source for a helm repo and serves to optimize, improve and simplify a Sitecore deployment to Kubernetes. 
