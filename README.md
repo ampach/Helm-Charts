@@ -5,6 +5,9 @@
 
 This GitHub repository represents a source for a helm repo and serves to optimize, improve and simplify a Sitecore deployment to Kubernetes. 
 
+> [!NOTE]
+> A Helm Chart is a package management tool for Kubernetes, which simplifies the deployment and management of applications on Kubernetes clusters. It functions like a template, containing pre-configured Kubernetes resource files. These charts help in defining, installing, and upgrading even the most complex Kubernetes applications, enabling users to manage Kubernetes applications with the same ease as traditional package managers provide for operating systems.
+
 ## Charts
 
 ### Charts to provision an infrastructure
@@ -51,3 +54,6 @@ To install the [chart-name] chart:
 To uninstall the chart:
 
     helm delete my-[chart-name]
+
+> [!IMPORTANT]
+> Follow a particular chart for detailed installation instructions.
