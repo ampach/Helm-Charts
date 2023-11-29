@@ -1,5 +1,23 @@
 # Cluster-init Helm chart
 
+This chart installs and configure the following:
+- Installs and configures the [secrets-store-csi-driver-provider-azure](https://github.com/Azure/secrets-store-csi-driver-provider-azure) to read secrets from Azure KeyVault and store as Kubernetes secrets.
+- Installs and configures the [ingress-nginx](https://github.com/kubernetes/ingress-nginx) with Static IP assigned.
+- Install a configmap with default static Sitecore varialbes.
+
+### Prerequisites
+
+- [Helm3](https://helm.sh/docs/intro/quickstart/#install-helm)
+
+### Installing the Chart
+
+
+
+```shell
+helm repo add ampach https://ampach.github.io/Sitecore.Helm-Charts
+helm install ampach/cluster-init --generate-name
+```
+
 ## Configuration
 The following table lists the configurable parameters of the `cluster-init` chart and their default values.
 
